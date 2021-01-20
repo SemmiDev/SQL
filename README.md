@@ -1,4 +1,4 @@
-**`©2021 | sammidev `**
+**`© 2021 | sammidev `**
 # KAK MEONG | TUGAS 3 | STIE HANG TUAH #
 
 ## Database ##
