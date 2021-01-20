@@ -13,9 +13,9 @@
 
 ## Resources ##
 
-* Question : */resources/tugas-3/TUGAS BASIS DATA 3.pdf*
-* Data : */resources/tugas-3/Materi latihan 3.csv*
-* full sql : */resources/tugas-3/jawaban.sql*
+* Question : ***/resources/tugas-3/TUGAS BASIS DATA 3.pdf***
+* Data : ***/resources/tugas-3/Materi latihan 3.csv***
+* full sql : ***/resources/tugas-3/jawaban.sql***
 
 ## Steps ##
 
