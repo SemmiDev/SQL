@@ -7,14 +7,15 @@
 
 ## Software Needs ##
 
-* XAMPP
-* IDE (DataGrip/PHPMyAdmin/MySQL Workbench)
+* XAMPP / MYSQL Community Server
+* IDE : DataGrip / PHPMyAdmin / MySQL Workbench
+* Which i use : *XAMPP & DataGrip*
 
 ## Resources ##
 
-* Question : /resources/tugas-3/TUGAS BASIS DATA 3.pdf
-* Data : /resources/tugas-3/Materi latihan 3.csv
-* full sql : /resources/tugas-3/jawaban.sql
+* Question : */resources/tugas-3/TUGAS BASIS DATA 3.pdf*
+* Data : */resources/tugas-3/Materi latihan 3.csv*
+* full sql : */resources/tugas-3/jawaban.sql*
 
 ## Steps ##
 
