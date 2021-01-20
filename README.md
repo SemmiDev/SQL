@@ -1,5 +1,5 @@
 **`© 2021 | sammidev `**
-# KAK MEONG | TUGAS 3 | STIE HANG TUAH #
+# KAK MEONG | TUGAS 3 | HANG TUAH #
 
 ## Database ##
 
