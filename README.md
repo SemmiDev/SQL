@@ -1,5 +1,5 @@
 **`©2021 | sammidev `**
-# KAK MEONG || TUGAS 3 || STIE HANG TUAH #
+# KAK MEONG | TUGAS 3 | STIE HANG TUAH #
 
 ## Database ##
 
@@ -43,6 +43,7 @@ CREATE TABLE ALUMNI_SammiAldhiYanto (
 ```
 
 3. Import data
+
 ![Screenshot (1192)](https://user-images.githubusercontent.com/55814880/105155165-db479900-5b3c-11eb-9a2b-98a01c211cb3.png)
 
 4. Remove 'title' field
