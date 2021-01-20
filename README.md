@@ -62,37 +62,37 @@ ALTER TABLE alumni_sammialdhiyanto
 
 **`Berapa Rata-rata IPK Seluruh Alumni`**
 ```sql
-SELECT AVG(IPK) FROM ALUMNI_SammiAldhiYanto;
+SELECT AVG(replace(IPK,',','.')) FROM ALUMNI_SammiAldhiYanto;
 ```
 
 **`Berapa Rata-rata IPK Bagi Alumni berjenis Kelamin Pria`**
 ```sql
-SELECT AVG(IPK) FROM ALUMNI_SammiAldhiYanto WHERE KELAMIN = 'PRIA';
+SELECT AVG(replace(IPK,',','.')) FROM ALUMNI_SammiAldhiYanto WHERE KELAMIN = 'PRIA';
 ```
 
 **`Berapa Rata-rata IPK Bagi Alumni berjenis Kelamin Wanita`**
 ```sql
-SELECT AVG(IPK) FROM ALUMNI_SammiAldhiYanto WHERE KELAMIN = 'WANITA';
+SELECT AVG(replace(IPK,',','.')) FROM ALUMNI_SammiAldhiYanto WHERE KELAMIN = 'WANITA';
 ```
 
 **`Berapa Rata-rata IPK Bagi Alumni Prodi SI`**
 ```sql
-SELECT AVG(IPK) FROM ALUMNI_SammiAldhiYanto WHERE PRODI = 'SI';
+SELECT AVG(replace(IPK,',','.')) FROM ALUMNI_SammiAldhiYanto WHERE PRODI = 'SI';
 ```
 
 **`Berapa Rata-rata IPK Bagi Alumni Prodi TI`**
 ```sql
-SELECT AVG(IPK) FROM ALUMNI_SammiAldhiYanto WHERE PRODI = 'TI';
+SELECT AVG(replace(IPK,',','.')) FROM ALUMNI_SammiAldhiYanto WHERE PRODI = 'TI';
 ```
 
 **`Berapa Nilai Minimum IPK Alumni Prodi TI yang Berjenis Kelamin Pria`**
 ```sql
-SELECT MIN(IPK) FROM ALUMNI_SammiAldhiYanto WHERE PRODI = 'TI' AND KELAMIN = 'PRIA';
+SELECT MIN(replace(IPK,',','.')) FROM ALUMNI_SammiAldhiYanto WHERE PRODI = 'TI' AND KELAMIN = 'PRIA';
 ```
 
 **`Berapa Nilai Maksimum IPK Alumni Prodi SI yang Berjenis Kelamin Wanita`**
 ```sql
-SELECT MIN(IPK) FROM ALUMNI_SammiAldhiYanto where PRODI = 'SI' AND KELAMIN = 'WANITA';
+SELECT MIN(replace(IPK,',','.')) FROM ALUMNI_SammiAldhiYanto where PRODI = 'SI' AND KELAMIN = 'WANITA';
 ```
 
 **`Berapa Jumlah banyaknya Alumni Prodi TI dan Berikan Keterangan (alias) dengan
@@ -110,5 +110,5 @@ SELECT COUNT(id) AS 'Total Alumni Prodi SI Kelahiran Pekanbaru' FROM alumni_samm
 
 **`Berapa Jumlah Banyaknya Seluruh Alumni yang memiliki IPK diatas 3,50`**
 ```sql
-SELECT COUNT(id) AS 'Total alumni yg memiliki ipk diatas 3,50' FROM alumni_sammialdhiyanto WHERE IPK > '3,50';
+SELECT COUNT(id) AS 'Total alumni yg memiliki ipk diatas 3,50' FROM alumni_sammialdhiyanto WHERE replace(IPK,',','.') > '3.50';
 ```
