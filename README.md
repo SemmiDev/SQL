@@ -1,5 +1,5 @@
 **`© 2021 | sammidev `**
-# KAK Meianly salsa anggraini | TUGAS 3 | HANG TUAH #
+# Kak Meianly Salsa Anggraini | Tugas 3 | Hang Tuah #
 
 ## Database ##
 
