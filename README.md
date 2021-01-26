@@ -129,8 +129,10 @@ SELECT COUNT(id) AS 'Total alumni yg memiliki ipk diatas 3,50' FROM alumni_sammi
 
 ## Resources ##
 
-* Question : ***/resources/uas/UAS BASIS DATA.pdf***
-* Data : ***/resources/uas/LAMPIRAN DATA UAS.csv***
+
+
+* Question : [UAS BASIS DATA.pdf](https://github.com/SemmiDev/SQL/blob/master/resources/uas/UAS%20BASIS%20DATA.pdf)
+* Data : [LAMPIRAN DATA UAS.csv](https://github.com/SemmiDev/SQL/blob/master/resources/uas/LAMPIRAN%20DATA%20UAS.csv)
 
 ## Steps ##
 
