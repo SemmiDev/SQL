@@ -13,9 +13,9 @@
 
 ## Resources ##
 
-* Question : ***/resources/tugas-3/TUGAS BASIS DATA 3.pdf***
-* Data : ***/resources/tugas-3/Materi latihan 3.csv***
-* full sql : ***/resources/tugas-3/jawaban.sql***
+* Question : [TUGAS BASIS DATA 3.pdf](https://github.com/SemmiDev/SQL/blob/master/resources/tugas-3/TUGAS%20BASIS%20DATA%203.pdf)
+* Data : [Materi latihan 3.csv](https://github.com/SemmiDev/SQL/blob/master/resources/tugas-3/Materi%20Latihan%203.csv)
+* full sql : [jawaban.sql](https://github.com/SemmiDev/SQL/blob/master/resources/tugas-3/jawaban.sql)
 
 ## Steps ##
 
