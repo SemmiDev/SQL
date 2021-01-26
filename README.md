@@ -1,7 +1,9 @@
 **`© 2021 | sammidev `**
 
-[Tugas 3](#section-1)
-[UAS DB](#section-2)
+# Table of Contents
+
+1. [**`Tugas 3`**](#section-1)
+2. [**`UAS DATABASE`**](#section-2)
 
 
 ### Section 1
