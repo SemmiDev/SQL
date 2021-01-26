@@ -1,7 +1,13 @@
 **`© 2021 | sammidev `**
+
+[Tugas 3](#section-1)
+[UAS DB](#section-2)
+
+
+### Section 1
 # Kak Meianly Salsa Anggraini | Tugas 3 | Hang Tuah #
 
-## Database ##
+## Database #
 
 * MySQL
 
@@ -115,6 +121,8 @@ SELECT COUNT(id) AS 'Total alumni yg memiliki ipk diatas 3,50' FROM alumni_sammi
 
 
 **`© 2021 | sammidev `**
+
+### Section 2
 # Kak Meianly Salsa Anggraini | UAS BASIS DATA | Hang Tuah #
 
 ## Database ##
