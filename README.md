@@ -112,3 +112,81 @@ SELECT COUNT(id) AS 'Total Alumni Prodi SI Kelahiran Pekanbaru' FROM alumni_samm
 ```sql
 SELECT COUNT(id) AS 'Total alumni yg memiliki ipk diatas 3,50' FROM alumni_sammialdhiyanto WHERE replace(IPK,',','.') > '3.50';
 ```
+
+
+**`© 2021 | sammidev `**
+# Kak Meianly Salsa Anggraini | UAS BASIS DATA | Hang Tuah #
+
+## Database ##
+
+* MySQL
+
+## Software Needs ##
+
+* XAMPP / MYSQL Community Server
+* IDE : DataGrip / PHPMyAdmin / MySQL Workbench
+* Which i use : *XAMPP & DataGrip*
+
+## Resources ##
+
+* Question : ***/resources/uas/UAS BASIS DATA.pdf***
+* Data : ***/resources/uas/LAMPIRAN DATA UAS.csv***
+
+## Steps ##
+
+```sql
+
+# TAMPILKAN SEMUA DATABASES
+SHOW DATABASES;
+
+# MEMBUAT DATABASE
+CREATE DATABASE PENDIDIKAN_SammiAldhiYanto;
+
+# GUNAKAN DATABASE YG TELAH DIBIKIN
+USE PENDIDIKAN_SammiAldhiYanto;
+
+# BIKIN TABLE YANG MASING-MASING COLUMN SESUAI DENGAN DATASET
+CREATE TABLE SEKOLAH_SammiALdhiYanto (
+    provinsi VARCHAR(50) DEFAULT NULL,
+    tingkat_pendidikan ENUM('SD','SMP','SMA','SMK','SLB') DEFAULT NULL,
+    jenis_kelamin ENUM('Perempuan','Laki-laki') DEFAULT NULL,
+    jumlah_siswa INT UNSIGNED DEFAULT NULL,
+    jumlah_guru INT UNSIGNED DEFAULT NULL
+);
+
+# SKIP AJA XIXIXI
+DESC SEKOLAH_SammiALdhiYanto;
+
+# IMPORT DATA DARI CSV (CURRENTLY : DATAGRIP)
+
+# LIHAT SEMUA DATA YANG TELAH DI IMPORT
+SELECT * FROM SEKOLAH_SammiALdhiYanto;
+
+# HAPIUS COLUMN JUMLAH_GURU
+ALTER TABLE SEKOLAH_SammiALdhiYanto
+    DROP COLUMN jumlah_guru;
+
+# A. Berapa Rata-rata pada Jumlah Siswa Seluruh Provinsi
+SELECT AVG(jumlah_siswa) FROM SEKOLAH_SammiALdhiYanto;
+
+# B. Berapa Total pada Seluruh Siswa yang Tingkat Pendidikan SD
+SELECT COUNT(tingkat_pendidikan) FROM SEKOLAH_SammiALdhiYanto WHERE tingkat_pendidikan = 'SD';
+
+# C. Berapa Nilai Maksimum pada Jumlah Siswa Tingkat Pendidikan SMP
+SELECT MAX(jumlah_siswa) FROM SEKOLAH_SammiALdhiYanto WHERE tingkat_pendidikan = 'SMP';
+
+# D. Berapa Nilai Minimum Pada Jumlah Siswa yang berkelamin Wanita Tingkat Pendidikan SMK
+SELECT MIN(jumlah_siswa) FROM SEKOLAH_SammiALdhiYanto WHERE jenis_kelamin = 'Perempuan' AND tingkat_pendidikan = 'SMK';
+
+# E. Berapa Total Maksimum Siswa yang berkelamin Pria namun berasal dari Provinsi Jawa Barat
+SELECT MAX(jumlah_siswa) FROM SEKOLAH_SammiALdhiYanto WHERE jenis_kelamin = 'Laki-laki' AND  provinsi = 'Jawa Barat';
+
+# F. Berapa Banyak Jumlah Siswa yang Berasal Dari Riau yang Tingkat Pendidikan SMA dan
+# Berikan Keterangan (alias) dengan nama “Total Siswa Provinsi Riau - SMA”
+SELECT SUM(jumlah_siswa) as 'Total Siswa Provinsi Riau - SMA' from SEKOLAH_SammiALdhiYanto where provinsi = 'Riau' AND  tingkat_pendidikan = 'SMA';
+
+```
+
+# IMPORT FILE 
+
+![Screenshot (1192)](https://user-images.githubusercontent.com/55814880/105155165-db479900-5b3c-11eb-9a2b-98a01c211cb3.png)
