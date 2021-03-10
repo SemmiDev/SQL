@@ -4,7 +4,7 @@
 
 1. [**`Tugas 3`**](#section-1)
 2. [**`UAS DATABASE`**](#section-2)
-3. [**`Pratikum 2`**](#section-4)
+3. [**`Pratikum 2`**](#pratikum-2)
 ___
 
 ### Section 1
@@ -240,7 +240,7 @@ CREATE TABLE PEGAWAI (
 ```
 
 
-### Section 4
+### Pratikum 2
 
 **`© 2021 | sammidev `**
 
