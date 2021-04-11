@@ -8,8 +8,6 @@
 4. [**`Belajar JOIN`**](#belajar-join)
 5. [**`Belajar relation`**](#belajar-relation)
 
-___
-
 ### Section 1
 # Kak Meianly Salsa Anggraini | Tugas 3 | Hang Tuah #
 
@@ -393,7 +391,6 @@ ALTER TABLE tb_mahasiswa_sammi ADD CONSTRAINT PRIMARY KEY(nim);
 # ....
 ```
 
-
 ### Belajar JOIN
 
 **`© 2021 | sammidev `**
@@ -721,3 +718,135 @@ SELECT * FROM product JOIN categories on product.category_id = categories.id;
 
 
 
+=======
+
+### Pratikum 3
+
+**`© 2021 | sammidev `**
+
+# DB db_sammi
+```sql
+CREATE TABLE db_sammi;
+```
+
+# Aktifkan database
+```sql
+USE db_sammi;
+```
+
+# Tabel mahasiswa
+```sql
+CREATE TABLE tb_mahasiswa_sammi(
+    nim INT(8) PRIMARY KEY,
+    nama_mhs CHAR(50),
+    sex ENUM('L','P') DEFAULT 'L',
+    alamat VARCHAR(50),
+    kota VARCHAR(20) DEFAULT 'Purwokerto',
+    asal_sma CHAR(30),
+    nohp VARCHAR(12),
+    login CHAR(20),
+    pass CHAR(20),
+    umur INT,
+    kode_prodi CHAR(6),
+    FOREIGN KEY fk0(kode_prodi) REFERENCES tb_prodi_sammi(kode_prodi)
+);
+```
+
+# Tabel prodi
+```sql
+CREATE TABLE tb_prodi_sammi(
+    kode_prodi CHAR(6) PRIMARY KEY,
+    nama_prodi CHAR(30)
+);
+```
+
+# Tabel dosen
+```sql
+CREATE TABLE tb_dosen_sammi(
+    nik INT(11) AUTO_INCREMENT PRIMARY KEY,
+    inisial CHAR(3) UNIQUE KEY,
+    nama_dosen CHAR(50),
+    status ENUM('T','LB') DEFAULT 'T',
+    sex ENUM('L','P') DEFAULT 'L',
+    agama CHAR(20),
+    login CHAR(20),
+    pass CHAR(20),
+    alamat VARCHAR(50),
+    kota VARCHAR(20) DEFAULT 'Purwokerto',
+    email VARCHAR(50),
+    nohp VARCHAR(12),
+    salary INT
+);
+```
+
+## Isikan data – data (record) ke dalam tabel prodi
+```sql
+INSERT INTO tb_prodi_sammi VALUES 
+('S1 IF','IF'),
+('D3 TT','TT'),
+('S1 TT','TT'),
+('D1 PR','PR');
+```
+
+## Isikan data – data (record) ke dalam tabel mahasiswa
+```sql
+INSERT into tb_mahasiswa_sammi VALUES
+('13120001','Anton', 'L', 'Jl. Jenderal Sudirman No.12','Brebes', 'SMA 1 Brebes', '081574568921','anton','anton','18','S1 IF'),
+('13120002','Bany', 'L', 'Jl. Letnan Jenderal Sutoyo No.15','Tegal', 'SMA 1 Tegal', '081574568346','bany','bany','18','S1 IF'),
+('13120003','Cika', 'P', 'Jl. Jenderal Sudirman No.38','Purwokerto', 'SMA 4 Purwokerto', '081874568000','cika','cika','17','S1 IF'),
+('13120004','Doni', 'L', 'Jl. Pahlawan No. 4','Brebes', 'SMK N 1 Adiwerna', '081674568900','doni','doni','19','S1 TT'),
+('13120005','Eka', 'P', 'Jl. Buntu No.01','Pekalongan', 'SMA 3 Pekalongan', '088874568945','eka','eka','17','S1 TT'),
+('13120006','Fendi', 'L', 'Jl. Kemerdekaan No.15','Pemalang', 'SMA 1 Pemalang', '081257456892','fendi','fendi','18','D3 TT'),
+('13120007','Galuh', 'P', 'Jl. Mawar Putih','Brebes', 'SMA 2 Brebes', '081273458921','galuh','galuh','18','D1 PR')
+```
+
+## Isikan data berikut ke dalam tabel dosen
+```sql
+INSERT into tb_dosen_sammi VALUES
+('1','DS','Didi Supriyadi','T','L','Islam','didi','didi','Jl.Sunan Bonang RT 01/03 Banjaranyar','Brebes', 'didisupriyadi@st3telkom.ac.id', '085743622236','5000000'),
+('2','STS','Sisilia Thya Safitri','T', 'P','Kristen','sisil','sisil', 'Jl. Antah berantah RT 001/005 Banjarbaru','Jambi', 'sisil@st3telkom.ac.id', '085875997546','5000000'),
+('3','TW','Tenia Wahyuningrum','T', 'P','Islam','tenia','tenia', 'Jl. Ledug RT 01/03 Banyumas','Purwokerto', 'tenia@st3telkom.ac.id','085746795432','5500000'),
+('4','DJ','Dwi Januarita AK','T', 'P','Islam','ita','ita', 'Jl. Sunan Kudus RT 01/03 Jekulo','Kudus', 'ita@st3telkom.ac.id', '085852829809','4000000'),
+('5','IS','Irwan Susanto','T', 'L','Islam','irwan','irwan', 'Jl. Tanjung RT 01/03 Banyumas','Purwokerto', 'irwan@st3telkom.ac.id', '081327593529','5500000'),
+('6','SL','Sarlan','LB', 'L', 'Islam', 'sarlan', 'sarlan', 'Jl. Jend. SudirmanRT 01/03 Banyumas','Purwokerto', 'sarlan@st3telkom.ac.id', '081634462738','3500000'),
+('7','DN','Daniel','LB', 'L', 'Kristen', 'daniel', 'daniel', 'Jl. Tanjung RT 04/07 Banyumas','Purwokerto','daniel@st3telkom.ac.id', '081365047309','4500000')
+```
+
+## Tampilkan semua isi record tabel mahasiswa.
+```sql
+SELECT * FROM tb_mahasiswa_sammi;
+```
+
+## Ubah data salah satu nama mahasiswa (misal :Anton menjadi Dino)
+```sql
+UPDATE tb_mahasiswa_sammi SET nama_mhs = 'Dino' WHERE nama_mhs='Anton';
+```
+
+## Tampilkan satu baris data/record data yang telah diubah tadi yaitu record
+dengan nama Dino saja.
+```sql
+SELECT * FROM tb_mahasiswa_sammi WHERE nama_mhs ='Dino';
+```
+
+## Hapus data mahasiswa yang bernama Dino.
+```sql
+DELETE FROM tb_mahasiswa_sammi WHERE nama_mhs = 'Dino';
+```
+
+## Tampilkan record/data mahasiswa yang usianya lebih dari atau sama
+dengan 17 tahun.
+```sql
+SELECT  * FROM tb_mahasiswa_sammi WHERE umur >= 17;
+```
+
+## Tampilkan semua data dosen yang berjenis kelamin Pria dan agamanya
+Islam.
+```sql
+SELECT * FROM tb_dosen_sammi WHERE sex='L' and agama='Islam';
+```
+
+## Dengan menggunakan satu perintah SELECT, tampilkan semua nama dosen yang berstatus Tetap dengan agamanya adalah Islam atau dosen Luar Biasa (LB) dengan agama kristen.
+```sql
+SELECT nama_dosen FROM tb_dosen_sammi WHERE status='T' and agama='islam' or status='LB' and agama='kristen';
+```
+>>>>>>> f5c5cf4090507563465f1ca9609335a6bd7663a1
