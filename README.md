@@ -8,6 +8,7 @@
 4. [**`Pratikum 3`**](#pratikum-3)
 5. [**`Belajar JOIN`**](#belajar-join)
 6. [**`Belajar relation`**](#belajar-relation)
+7. [**`Belajar Mysql`**](#belajar-mysql)
 
 ### Section 1
 # Kak Meianly Salsa Anggraini | Tugas 3 | Hang Tuah #
@@ -997,4 +998,486 @@ CREATE TABLE `view` (
     `access_time` datetime(3) DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+
+
+### Belajar MySQL
+```sql
+CREATE TABLE customer (
+    customer_id BIGINT NOT NULL AUTO_INCREMENT,
+    customer_name VARCHAR(50) NOT NULL,
+    address VARCHAR(50),
+    phone_number CHAR (12) UNICODE,
+    email VARCHAR (50) UNICODE,
+    PRIMARY KEY(customer_id)
+);
+
+DESC customer;
+
+INSERT INTO customer(customer_name, address, phone_number, email)
+VALUES ('sam1', 'sammidev1 address', '000000000000', 'sammidev1@gmail.com'),
+       ('sam2', 'sammidev2 address', '000000000001', 'sammidev2@gmail.com'),
+       ('sam3', 'sammidev3 address', '000000000002', 'sammidev3@gmail.com'),
+       ('sam4', 'sammidev4 address', '000000000003', 'sammidev4@gmail.com'),
+       ('sam5', 'sammidev5 address', '000000000004', 'sammidev5@gmail.com');
+
+UPDATE customer SET customer_name = 'sammidev' WHERE customer_id = 1;
+
+INSERT INTO customer(customer_name, address, phone_number, email)
+VALUES ('sam5','add6', '0000', 'sammidev4@yahoo.com');
+
+SELECT * FROM customer WHERE email LIKE '%@gmail.com';
+SELECT * FROM customer WHERE email LIKE '%@yahoo.com';
+
+SELECT * FROM customer ORDER BY customer_id;
+SELECT * FROM customer ORDER BY customer_id DESC;
+
+SELECT * FROM customer LIMIT 3;
+SELECT * FROM customer LIMIT 2,3;
+SELECT * FROM customer LIMIT 3 OFFSET 1;
+SELECT COUNT(*) FROM customer;
+
+SELECT customer_id, CONCAT(customer_name, '_', email) AS nama_email FROM customer;
+SELECT SUBSTRING(customer_name, 1, 4) FROM customer;
+SELECT CONCAT_WS(', ', customer_id, customer_name, email) FROM customer;
+SELECT customer_name, LENGTH(customer_name) as customer_name_length FROM customer;
+SELECT LEFT(customer_name, 4) FROM customer where customer_id = 1;
+SELECT RIGHT(customer_name, 4) FROM customer where customer_id = 1;
+
+SELECT LEFT(customer_name, LENGTH(customer_name)/2) as leftname,
+       RIGHT(customer_name, length(customer_name)/2) as rightname,
+       customer_name as fullname
+from customer;
+
+SELECT LTRIM('    sammidev        ') as ltrim;
+SELECT RTRIM('    sammidev        ') as rtring;
+SELECT TRIM('    sammidev        ') as trim;
+SELECT REPLACE('aaa', 'a','b');
+SELECT REPEAT('i love u', 3);
+SELECT REVERSE('apa');
+SELECT LCASE('SAMMIDEV');
+SELECT UCASE('sammidev');
+
+
+SELECT NOW();
+SELECT SYSDATE();
+
+SELECT MONTH('2001-10-20');
+SELECT YEAR('2001-10-20');
+SELECT WEEK('2001-10-20');
+SELECT WEEKDAY('2001-10-20');
+SELECT DAYNAME('2001-10-20');
+SELECT DAYNAME('2002-01-01');
+SELECT HOUR(NOW());
+SELECT MINUTE(NOW());
+SELECT SECOND(NOW());
+
+
+SELECT DATE_ADD(now(), INTERVAL 1 DAY);
+SELECT DATE_ADD(now(), INTERVAL 2 HOUR);
+SELECT NOW() as sekarang,  DATE_ADD(now(), interval 1 hour) as 'satu_jam_kemudian';
+
+SELECT DATE_FORMAT (now(), '%a, %d-%M-%Y %H:%i:%s');
+
+SELECT 1+1;
+SELECT 1-1;
+SELECT 1*1;
+SELECT 1/1;
+SELECT 1%1;
+SELECT ABS(-1);
+SELECT FLOOR(3.8);
+SELECT CEIL(3.8);
+SELECT ROUND(3.6);
+SELECT ROUND(3.7);
+SELECT 32 != 32;
+SELECT 32 = 32;
+SELECT POW(2,5) = 32;
+SELECT RAND(2);
+SELECT TRUNCATE(10.123131231231241, 3) as 3_dec;
+SELECT GREATEST(2,3) as 2_vs_3;
+SELECT COUNT(*) FROM customer;
+SELECT MAX(customer_id) FROM customer;
+SELECT MIN(customer_id) FROM customer;
+SELECT SUM(customer_id) FROM customer;
+SELECT AVG(customer_id) FROM customer;
+SELECT current_user();
+SELECT CURRENT_DATE;
+SELECT CURRENT_TIMESTAMP;
+SELECT USER();
+SELECT SYSTEM_USER();
+SELECT SESSION_USER();
+SELECT PASSWORD('sammidev');
+SELECT PASSWORD('sammidev') = PASSWORD('sammidev');
+SELECT ENCODE('sam', 'dev');
+SELECT MD5('dev');
+SELECT LAST_INSERT_ID();
+SELECT VERSION();
+
+DROP TABLE customer;
+
+# advance
+CREATE TABLE produk (
+    id_produk varchar(5) NOT NULL,
+    nm_produk varchar(30) NOT NULL,
+    satuan varchar(10) NOT NULL,
+    harga decimal(10,0) NOT NULL default '0',
+    stock int(3) NOT NULL default '0',
+    PRIMARY KEY (id_produk)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE pelanggan (
+    id_pelanggan varchar(5) NOT NULL,
+    nm_pelanggan varchar(40) NOT NULL,
+    alamat text NOT NULL,
+    telepon varchar(20) NOT NULL,
+    email varchar(50) NOT NULL,
+    PRIMARY KEY (id_pelanggan)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE pesan (
+    id_pesan int(5) NOT NULL auto_increment,
+    id_pelanggan varchar(5) NOT NULL,
+    tgl_pesan date NOT NULL,
+    PRIMARY KEY (id_pesan),
+    KEY id_pelanggan (id_pelanggan),
+    CONSTRAINT pesan_ibfk_1 FOREIGN KEY (id_pelanggan)
+    REFERENCES pelanggan (id_pelanggan)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+CREATE TABLE faktur (
+    id_faktur int(5) NOT NULL auto_increment,
+    id_pesan int(5) NOT NULL,
+    tgl_faktur date NOT NULL,
+    PRIMARY KEY (id_faktur),
+    KEY id_pesan (id_pesan),
+    CONSTRAINT faktur_ibfk_1 FOREIGN KEY (id_pesan)
+    REFERENCES pesan (id_pesan)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE kuitansi (
+    id_kuitansi int(5) NOT NULL auto_increment,
+    id_faktur int(5) NOT NULL,
+    tgl_kuitansi date NOT NULL,
+    PRIMARY KEY (id_kuitansi),
+    KEY FK_kuitansi (id_faktur),
+    CONSTRAINT FK_kuitansi FOREIGN KEY (id_faktur)
+    REFERENCES faktur (id_faktur)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE detil_pesan (
+    id_pesan int(5) NOT NULL,
+    id_produk varchar(5) NOT NULL,
+    jumlah int(5) NOT NULL default '0',
+    harga decimal(10,0) NOT NULL default '0',
+    PRIMARY KEY (id_pesan,id_produk),
+    KEY FK_detil_pesan (id_produk),
+    KEY id_pesan (id_pesan),
+    CONSTRAINT FK_detil_pesan FOREIGN KEY (id_produk) REFERENCES produk (id_produk),
+    CONSTRAINT FK_detil_pesan2 FOREIGN KEY (id_pesan) REFERENCES pesan (id_pesan)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+SHOW TABLES;
+
+INSERT INTO pelanggan(id_pelanggan, nm_pelanggan, alamat, telepon, email)
+VALUES ('p0001', 'sammi', 'padang', '00001', 'sammi@gmail.com'),
+       ('p0002', 'izzah', 'riau', '00002','izzah@gmail.com'),
+       ('p0003', 'adid', 'talu', '00003', 'adid@gmail.com');
+
+
+INSERT INTO pesan(id_pelanggan, tgl_pesan)
+VALUES ('p0001', NOW()),
+       ('p0002', NOW()),
+       ('p0003', NOW()),
+       ('p0001', DATE_ADD(NOW(), INTERVAL 1 WEEK)),
+       ('p0001', DATE_ADD(NOW(), INTERVAL 1 DAY ));
+
+SELECT * FROM pelanggan;
+SELECT * FROM pesan;
+
+SELECT pelanggan.nm_pelanggan as nama, pelanggan.email, pesan.tgl_pesan as tanggal FROM pelanggan, pesan WHERE pelanggan.id_pelanggan = pesan.id_pelanggan;
+
+SELECT p.id_pelanggan as id_pelanggan,
+       p.nm_pelanggan as nama,
+       p.email as email,
+       a.id_pesan as id_pesanan,
+       a.tgl_pesan as tanggal FROM pelanggan p
+           INNER JOIN pesan a on p.id_pelanggan = a.id_pelanggan ORDER BY tanggal DESC;
+
+INSERT INTO pelanggan(id_pelanggan, nm_pelanggan, alamat, telepon, email)
+ VALUES ('p0004', 'hantu', 'jakarta', '00004', 'hantu@gmail.com');
+
+
+SELECT p.id_pelanggan as id_pelanggan,
+       p.nm_pelanggan as nama,
+       p.email as email,
+       a.id_pesan as id_pesanan,
+       a.tgl_pesan as tanggal FROM pelanggan p
+           LEFT JOIN  pesan a on p.id_pelanggan = a.id_pelanggan;
+
+SELECT p.id_pelanggan as id_pelanggan,
+       p.nm_pelanggan as nama,
+       p.email as email,
+       a.id_pesan as id_pesanan,
+       a.tgl_pesan as tanggal FROM pelanggan p
+           RIGHT JOIN  pesan a on p.id_pelanggan = a.id_pelanggan;
+
+
+INSERT INTO produk(id_produk, nm_produk, satuan, harga, stock)
+VALUES ('prod4', 'product e', 'rupiah', 10000, '10'),
+       ('prod5', 'product f', 'rupiah', 650000, '20'),
+       ('prod6', 'product g', 'rupiah', 30000, '30');
+
+SELECT * FROM produk;
+desc detil_pesan;
+desc produk;
+SELECT id_pesan FROM pesan;
+
+INSERT INTO detil_pesan(id_pesan, id_produk, jumlah, harga)
+VALUES (4, 'prod1', 1, 10000),
+       (7, 'prod2', 3, 650000),
+       (8, 'prod3', 4, 30000);
+
+SELECT * FROM pelanggan;
+SELECT * FROM pesan;
+SELECT * FROM produk;
+SELECT * FROM detil_pesan;
+
+SELECT pelanggan.id_pelanggan as ID_PELANGGAN,
+       pelanggan.nm_pelanggan as NAMA_PELANGGAN,
+       pelanggan.email as EMAIL_PELANGGAN,
+       pesan.id_pesan as ID_PESANAN,
+       detil_pesan.id_produk as ID_PRODUK,
+       produk.nm_produk as NAMA_PRODUK,
+       produk.harga as HARGA_PRODUK,
+       detil_pesan.jumlah AS JUMLAH_PRODUK
+    FROM pelanggan JOIN pesan
+    ON pelanggan.id_pelanggan = pesan.id_pelanggan
+    JOIN detil_pesan
+    ON pesan.id_pesan = detil_pesan.id_pesan
+    JOIN produk
+    ON detil_pesan.id_produk = produk.id_produk;
+
+INSERT INTO detil_pesan(id_pesan, id_produk, jumlah, harga)
+VALUES (4, 'prod4', 1, 1 * 10000),
+       (5, 'prod5', 3, 3 * 650000),
+       (6, 'prod6', 4, 4 * 30000);
+
+SELECT pelanggan.id_pelanggan as ID_PELANGGAN,
+       pelanggan.nm_pelanggan as NAMA_PELANGGAN,
+       pelanggan.email as EMAIL_PELANGGAN,
+       pesan.id_pesan as ID_PESANAN,
+       detil_pesan.id_produk as ID_PRODUK,
+       produk.nm_produk as NAMA_PRODUK,
+       produk.harga as HARGA_PRODUK,
+       detil_pesan.jumlah AS JUMLAH_PRODUK
+    FROM pelanggan JOIN pesan
+    ON pelanggan.id_pelanggan = pesan.id_pelanggan
+    JOIN detil_pesan
+    ON pesan.id_pesan = detil_pesan.id_pesan
+    JOIN produk
+    ON detil_pesan.id_produk = produk.id_produk;
+
+
+
+SELECT pesan.id_pesan,
+       pesan.tgl_pesan
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan = detil_pesan.id_pesan;
+
+desc pesan;
+
+SELECT pesan.id_pesan,
+       pesan.tgl_pesan,
+       pesan.id_pelanggan,
+       SUM(detil_pesan.jumlah) as jumlah
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan = detil_pesan.id_pesan
+GROUP BY id_pesan;
+
+SELECT pesan.id_pesan, COUNT(detil_pesan.id_produk) as
+jumlah
+FROM pesan, detil_pesan
+WHERE pesan.id_pesan=detil_pesan.id_pesan
+GROUP BY pesan.id_pesan
+HAVING jumlah > 1;
+
+
+SELECT id_pelanggan, nm_pelanggan FROM pelanggan
+WHERE id_pelanggan IN (SELECT id_pelanggan FROM pesan);
+
+SELECT id_pesan, jumlah from detil_pesan where jumlah = (
+    select max(jumlah) from detil_pesan
+);
+
+
+SELECT * FROM pelanggan ORDER BY RAND() LIMIT 2;
+
+SET AUTOCOMMIT = 0;
+BEGIN;
+INSERT INTO pelanggan(id_pelanggan, nm_pelanggan, alamat, telepon, email)
+VALUES ('p10', 'rahmatul', 'riau', '000', 'rahma@gmail.com');
+SET @id := LAST_INSERT_ID();
+COMMIT;
+
+SELECT * FROM pelanggan WHERE email = 'rahma@gmail.com';
+
+USE mysql;
+SHOW TABLES;
+SELECT * FROM user;
+
+GRANT ALL PRIVILEGES ON *.* TO monty@localhost
+IDENTIFIED BY 'qwerty' WITH GRANT OPTION;
+
+GRANT USAGE ON *.* TO adinda@192.168.1.5
+IDENTIFIED BY 'qwerty';
+
+GRANT ALL PRIVILEGES ON mysql.* TO admin@localhost
+IDENTIFIED BY 'qwerty';
+
+GRANT ALL PRIVILEGES ON penjualan.* TO
+adinda@192.168.1.5;
+FLUSH PRIVILEGES;
+
+GRANT CREATE ON penjualan.* TO admin@localhost;
+FLUSH PRIVILEGES;
+
+REVOKE CREATE ON penjualan.* FROM admin@localhost;
+FLUSH PRIVILEGES;
+
+UPDATE user SET Password=PASSWORD(‘123’) WHERE
+User=’admin’ AND Host=’localhost’;
+SET PASSWORD FOR admin@localhost = PASSWORD (‘123’);
+FLUSH PRIVILEGES;
+
+USE belajar_mysql;
+
+DELIMITER $$
+CREATE TRIGGER penjualan.before_insert BEFORE INSERT ON
+penjualan.pelanggan
+FOR EACH ROW BEGIN
+INSERT INTO `log` (description, `datetime`, user_id)
+VALUES (CONCAT('Insert data ke tabel pelanggan id_plg
+= ', NEW.id_pelanggan), now(), user());
+END;
+$$
+DELIMITER ;
+
+DROP TRIGGER penjualan.before_insert;
+
+CREATE VIEW `data_plg` AS
+(select id_pelanggan, nm_pelanggan, telepon
+from `pelanggan` order by `nm_pelanggan`);
+
+SELECT * FROM data_plg;
+
+CREATE VIEW lap_jumlah_brg_transaksi
+AS (SELECT pesan.id_pesan, pesan.tgl_pesan,
+    pelanggan.id_pelanggan, pelanggan.nm_pelanggan,
+    detil_pesan.jumlah
+    FROM pesan, detil_pesan, pelanggan
+    WHERE pesan.id_pesan=detil_pesan.id_pesan AND
+    pelanggan.id_pelanggan=pesan.id_pelanggan
+    GROUP BY pesan.id_pesan);
+
+SELECT * FROM lap_jumlah_brg_transaksi;
+
+DROP VIEW data_plg;
+DROP VIEW lap_jumlah_brg_transaksi;
+
+DELIMITER $$
+    CREATE PROCEDURE hello()
+    BEGIN
+        SELECT "Hello World!";
+    END$$
+DELIMITER ;
+
+CALL hello();
+
+
+DELIMITER $$
+    CREATE PROCEDURE jumlahPelanggan()
+    BEGIN
+        SELECT COUNT(*) FROM pelanggan;
+    END$$
+DELIMITER ;
+
+CALL jumlahPelanggan();
+
+DELIMITER $$
+    CREATE PROCEDURE
+    jumlahItemBarang (pelanggan VARCHAR(5))
+    BEGIN
+        SELECT SUM(detil_pesan.jumlah)
+            FROM pesan, detil_pesan
+            WHERE pesan.id_pesan=detil_pesan.id_pesan
+        AND pesan.id_pelanggan=pelanggan;
+    END$$
+DELIMITER ;
+
+CALL jumlahItemBarang('p0001');
+
+DELIMITER $$
+    CREATE FUNCTION jumlahStockBarang(produk VARCHAR(5))
+    RETURNS INT
+    BEGIN
+        DECLARE jumlah INT;
+        SELECT COUNT(*) INTO jumlah FROM produk
+        WHERE id_produk=produk;
+    RETURN jumlah;
+    END$$
+DELIMITER ;
+
+SELECT * FROM produk;
+SELECT jumlahStockBarang('prod6');
+
+DELIMITER $$
+    CREATE FUNCTION hitungUmur (lahir DATE)
+    RETURNS INT
+    BEGIN
+        DECLARE thn_sekarang, thn_lahir INT;
+        SET thn_sekarang = YEAR(now());
+        SET thn_lahir = YEAR (lahir);
+        RETURN thn_sekarang - thn_lahir;
+    END$$
+DELIMITER ;
+
+SELECT hitungUmur(DATE('2001-10-20'));
+
+
+DELIMITER $$
+    CREATE FUNCTION cekPelanggan (pelanggan varchar(5))
+    RETURNS VARCHAR (100)
+    BEGIN
+        DECLARE jumlah INT;
+        SELECT COUNT(id_pesan) INTO jumlah FROM pesan
+        WHERE id_pelanggan=pelanggan;
+            IF (jumlah > 0) THEN
+            RETURN CONCAT("Anda sudah bertransaksi sebanyak ",
+            jumlah, " kali");
+        ELSE
+            RETURN "Anda belum pernah melakukan transaksi";
+        END IF;
+    END$$
+DELIMITER ;
+
+SELECT * FROM pelanggan;
+SELECT cekPelanggan('p0001');
+
+DELIMITER $$
+CREATE FUNCTION getDiskon(jumlah INT) RETURNS int(11)
+    BEGIN
+        DECLARE diskon INT;
+        CASE
+            WHEN (jumlah >= 100) THEN
+                SET diskon = 10;
+            WHEN (jumlah >= 50 AND jumlah < 100) THEN
+                SET diskon = 5;
+            WHEN (jumlah >= 20 AND jumlah < 50) THEN
+                SET diskon = 3;
+            ELSE SET diskon = 0;
+        END CASE;
+        RETURN diskon;
+    END$$
+DELIMITER ;
 ```
